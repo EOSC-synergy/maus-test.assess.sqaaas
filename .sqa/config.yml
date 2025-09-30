@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/CamillaLu/maus-test:
+      branch: main
+      repo: https://github.com/CamillaLu/maus-test
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/CamillaLu/maus-test git:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-ecru-crocodile.sh
+        container: qc.acc_stinky-turquoise-baboon
+  QC.Doc:
+    repos:
+      github.com/CamillaLu/maus-test find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-goldenrod-impala.sh
+        container: qc.doc_snippy-heliotrope-chihuahua
+      github.com/CamillaLu/maus-test git:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-goldenrod-dachshund.sh
+        container: qc.doc_shaky-eggplant-spaniel
+      github.com/CamillaLu/maus-test markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-lime-dane.sh
+        container: qc.doc_ugly-buff-boar
+  QC.Lic:
+    repos:
+      github.com/CamillaLu/maus-test licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-puce-caiman.sh
+        container: qc.lic_wheezy-green-gopher
+  QC.Met:
+    repos:
+      github.com/CamillaLu/maus-test cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-magnolia-devil.sh
+        container: qc.met_nerdy-firebrick-elephant
+  QC.Ver:
+    repos:
+      github.com/CamillaLu/maus-test get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-platinum-kingfisher.sh
+        container: qc.ver_goopy-ultramarine-tarantula
+timeout: 5400
